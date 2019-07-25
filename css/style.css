@@ -1,0 +1,17 @@
+.background {
+    background-color: cyan ;
+}
+#dragon {
+    width: 20% ;
+    height: 37px ;
+    border-color: black ;
+    border-radius: 5px ;
+    border-width: 1px ;
+    background-color: cyan ;
+}
+#dragon, #enterButton {
+    float: right ;
+    margin-top: 10px ;
+    margin-bottom: 10px ;
+    margin-right: 10px ;
+}
