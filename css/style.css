@@ -1,17 +1,40 @@
-.background {
-    background-color: cyan ;
+body {
+   background: url('../images/tomatobg.png');
+   background-repeat: none ;
+   background-size: cover;
 }
+.background {
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
 #dragon {
     width: 20% ;
     height: 37px ;
     border-color: black ;
     border-radius: 5px ;
     border-width: 1px ;
-    background-color: cyan ;
+    background-color: white
+
+}
+#dragon {
+    padding-left: 30px ;
 }
 #dragon, #enterButton {
     float: right ;
     margin-top: 10px ;
     margin-bottom: 10px ;
     margin-right: 10px ;
+}
+#cannon {
+    margin-top: 30px ;
+}
+.time {
+    margin-left: 10px ;
+    background-color: black ;
+    opacity: .5 ;
+    height: 600px ;
+    border-radius: 10px ;
 }
