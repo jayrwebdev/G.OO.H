@@ -1,5 +1,5 @@
 $("").on("click","value", function(){
-     
+     $('#latlng')[0].value = 12312
 })
 
 function initMap() {
