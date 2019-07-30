@@ -8,16 +8,16 @@ function initMap() {
       zoom: 8
     });
 
-      console.log('init')
+      
       var geocoder = new google.maps.Geocoder;
        var infowindow = new google.maps.InfoWindow;
 
-         document.getElementById('submit').addEventListener('click', function() {
+         $('#submit').on('click', function() {
            geocodeLatLng(geocoder, map, infowindow);
          });
 }
 function geocodeLatLng(geocoder, map, infowindow) {
-  var input = document.getElementById('latlng').value;
+  var input = $('#latlng').val()
   var latlngStr = input.split(',', 2);
   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
   geocoder.geocode({'location': latlng}, function(results, status) {
