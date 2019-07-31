@@ -5,7 +5,7 @@ var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI
 //creating variable based on the search bar input
 var search = $("#dragon").val()
 
-$(document).on("click", $("#enterButton"), function () {
+$("#enterButton").on("click", function () {
     //inputs search into new 
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=Miami?sort_by=rating";
 
@@ -19,13 +19,15 @@ $(document).on("click", $("#enterButton"), function () {
         success: function (data) {
             // Grab the results from the API JSON return
             var totalresults = data.total;
-            // If our results are greater than 0, continue
+            var business = data.businesses;
+            // If our results are  greater than 0, continue
+            for (var i = 0;  i < 3;i++){
             if (totalresults > 0) {
                 // Display a header on the page with the number of results
-                $('#yelp').append('<h5>We discovered ' + totalresults + ' results!</h5>');
+                //$('#yelp').append('<h5>We discovered ' + totalresults + ' results!</h5>');
                 // Itirate through the JSON array of 'businesses' which was returned by the API
-                $.each(data.businesses, function (i, item) {
                     // Store each business's object in a variable
+                    var item = business[i]
                     var id = item.id;
                     var alias = item.alias;
                     var phone = item.display_phone;
@@ -38,12 +40,8 @@ $(document).on("click", $("#enterButton"), function () {
                     var state = item.location.state;
                     var zipcode = item.location.zip_code;
                     // Append our result into our page
-                    $('#yelp').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
-                });
-            } else {
-                // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                $('#results').append('<h5>We discovered no results!</h5>');
-            }
-        }
-    })
-});  
+                    $('#yelpStuff').prepend('<div class="results" id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
+                };
+
+          
+            }}})})
