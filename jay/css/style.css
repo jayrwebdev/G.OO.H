@@ -2,6 +2,9 @@ body {
    background: url('../images/tomatobg.png');
    background-repeat: none ;
    background-size: cover;
+   height: 100%;
+   display: block;
+   width: 100%
 }
 .background {
     background: #f12711;  /* fallback for old browsers */
@@ -37,4 +40,12 @@ body {
     opacity: .5 ;
     height: 600px ;
     border-radius: 10px ;
+}
+#map {
+    height: 600px;
+    margin-bottom: 15px ;
+    border-radius: 10px ;
+}
+#picture {
+    margin-left: 10px ;
 }
