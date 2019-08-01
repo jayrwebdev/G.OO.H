@@ -36,8 +36,24 @@ body {
 }
 .time {
     margin-left: 10px ;
-  
-    
-    height: 600px ;
+    background-color: black ;
+    opacity: .5 ;
+    height: 300px;
     border-radius: 10px ;
+    display: inline-flex;
+    width: 29,16667%!important;
+   
+}
+.col-lg-4, .col-lg-7{
+    width: 29,16667%!important;
+}
+
+
+.novachrono {
+    margin-left: 500px;
+    
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+    opacity: 1!important;
 }

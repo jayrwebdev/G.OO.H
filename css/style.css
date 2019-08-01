@@ -2,6 +2,9 @@ body {
    background: url('../images/tomatobg.png');
    background-repeat: none ;
    background-size: cover;
+   height: 100%;
+   display: block;
+   width: 100%
 }
 .background {
     background: #f12711;  /* fallback for old browsers */
@@ -55,4 +58,12 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black;
     opacity: 1!important;
+}
+#map {
+    height: 600px;
+    margin-bottom: 15px ;
+    border-radius: 10px ;
+}
+#picture {
+    margin-left: 10px ;
 }

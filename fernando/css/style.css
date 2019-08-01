@@ -37,4 +37,13 @@ body {
     opacity: .5 ;
     height: 600px ;
     border-radius: 10px ;
+    font-size: 25px;
+    color: white;
+    padding-top: 200px;
 }
+.miamiButton{
+    margin-top: 20px;
+    width: 100%;
+
+}
+
