@@ -2,6 +2,8 @@ var queryURL = "https://api.yelp.com/v3/businesses/search"
 
 var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx"
 
+
+$(document)
 //create variable based on the business.total number and then set the offset to start from there
 
 //steps - GET original header request via ajax; originally is: hotels, restaurants, active places, doctors, 
@@ -17,6 +19,8 @@ var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI
 //creating variable based on the search bar input
 
 var search = $("#dragon").val()
+var lat = []
+var long = []
 
 //adding this later after editing the HTML to include categories: 
 //var dontGoWhere = $("#something").val()
@@ -81,8 +85,13 @@ $("#enterButton").on("click", function () {
                             var city = item.location.city;
                             var state = item.location.state;
                             var zipcode = item.location.zip_code;
+                            var bizlat = item.coordinates.latitude
+                            var bizlong = item.coordinates.longitude
                             // Append our result into our page
+                            lat.push(bizlat);
+                            long.push(bizlong);
                             console.log(id)
+
                             badBizCount++;
                             $('#yelpStuff').prepend('<div id="' + id + '" class="badBusinesses" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');//add "click here for reviews"
 
@@ -90,6 +99,8 @@ $("#enterButton").on("click", function () {
 
                     }
                     console.log(badBizCount)
+                    console.log(lat);
+                    console.log(long);
                     if (badBizCount) {
 
                     } else {
