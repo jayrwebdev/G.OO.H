@@ -2,8 +2,6 @@ var queryURL = "https://api.yelp.com/v3/businesses/search"
 
 var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx"
 
-
-$(document)
 //create variable based on the business.total number and then set the offset to start from there
 
 //steps - GET original header request via ajax; originally is: hotels, restaurants, active places, doctors, 
@@ -19,15 +17,14 @@ $(document)
 //creating variable based on the search bar input
 
 var search = $("#dragon").val()
-var lat = []
-var long = []
-
+var latlong = [{}]
+var category = $("#categories").val()
 //adding this later after editing the HTML to include categories: 
 //var dontGoWhere = $("#something").val()
 
 $("#enterButton").on("click", function () {
     //need category dropdown and need to input it into the categories URL
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + $("#dragon").val() + "&categories=restaurants&limit=50&radius=2000"
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + $("#dragon").val() + "&categories=" + $("#categories").val() + "&limit=50&radius=2000"
 
     //add in code later: "&offset=" + totalresults - 50;""
     // var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + search + "&categories=" + dontGoWhere + "&limit=50&sort_by=rating&radius=2000&offset=" + totalresults - 50;
@@ -85,11 +82,12 @@ $("#enterButton").on("click", function () {
                             var city = item.location.city;
                             var state = item.location.state;
                             var zipcode = item.location.zip_code;
-                            var bizlat = item.coordinates.latitude
-                            var bizlong = item.coordinates.longitude
+
+                            var bizlatlong = { "lat": item.coordinates.latitude, "long": item.coordinates.longitude }
+
                             // Append our result into our page
-                            lat.push(bizlat);
-                            long.push(bizlong);
+                            latlong.push(bizlatlong);
+
                             console.log(id)
 
                             badBizCount++;
@@ -99,8 +97,8 @@ $("#enterButton").on("click", function () {
 
                     }
                     console.log(badBizCount)
-                    console.log(lat);
-                    console.log(long);
+
+                    console.log(bizlatlong);
                     if (badBizCount) {
 
                     } else {
