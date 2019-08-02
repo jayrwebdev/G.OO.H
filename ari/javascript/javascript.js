@@ -91,14 +91,14 @@ $("#enterButton").on("click", function () {
                             console.log(id)
 
                             badBizCount++;
-                            $('#yelpStuff').prepend('<div id="' + id + '" class="badBusinesses" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');//add "click here for reviews"
+                            $('#yelpStuff').prepend('<div id="' + id + '" class="badBusinesses" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b><br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');//add "click here for reviews"
 
                         }
 
                     }
                     console.log(badBizCount)
 
-                    console.log(bizlatlong);
+                    console.log(latlong);
                     if (badBizCount) {
 
                     } else {
