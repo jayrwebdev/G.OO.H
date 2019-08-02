@@ -123,6 +123,7 @@ $("#enterButton").on("click", function () {
 $(document).on("click", ".yelpClick", function () {
     event.preventDefault()
     var attrId = $(this).attr("yelp")
+    
     var reviewURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/" + $(this).attr("yelp") + "/reviews"
     $.ajax({
         //get restaurant review search
@@ -134,10 +135,34 @@ $(document).on("click", ".yelpClick", function () {
         dataType: 'json',
         success: function (data) {
             console.log(data)
-
+            badRatingCount = 0
             for (i = 0; i < data.reviews; i++) {
-                $(this).append("<div id=")
+                var item = reviews[i]
+                var id = item.id
+                var rating = item.rating
+                var text = item.text
+                console.log(item)
+                if (rating = 0) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_0.png">')
+                }
+                if (rating = 1) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_1.png">')
+                }
+                if (rating = 2) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_2.png">')
+                }
+                if (rating = 3) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_3.png">')
+                }
+                if (rating <= 3) {
+                    badRatingCount++;
+                    $(this).append('<div id="' + id + '"><h6>Rating:' + rating + '</h6><p>' + text + "</p>")
+                }
             }
+            if (badRatingCount = 0) {
+                $(this).append("<h6>Looks like yelp isn't giving us bad enough ratings....but trust us... this place is terrible!</h6>")
+            }
+
         }
     })
 })
