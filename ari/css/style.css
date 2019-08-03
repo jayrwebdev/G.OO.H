@@ -25,7 +25,7 @@ body {
 #dragon {
     padding-left: 30px ;
 }
-#dragon, #enterButton {
+#dragon, #categories, #enterButton {
     float: right ;
     margin-top: 10px ;
     margin-bottom: 10px ;

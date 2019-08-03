@@ -3,12 +3,13 @@ var queryURL = "https://api.yelp.com/v3/businesses/search"
 var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx"
 
 //creating variable based on the search bar input
-var search = $("#dragon").val()
+
 
 $("#enterButton").on("click", function () {
   //inputs search into new 
   var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=Miami?sort_by=rating";
 
+ 
   $.ajax({
     url: myurl,
     headers: {

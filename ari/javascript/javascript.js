@@ -17,13 +17,15 @@ var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI
 //creating variable based on the search bar input
 
 var search = $("#dragon").val()
-
+var latlong = [{}]
+var category = $("#categories").val()
+var badBizCount = 0
 //adding this later after editing the HTML to include categories: 
 //var dontGoWhere = $("#something").val()
 
 $("#enterButton").on("click", function () {
     //need category dropdown and need to input it into the categories URL
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + $("#dragon").val() + "&categories=restaurants&limit=50&radius=2000"
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + $("#dragon").val() + "&categories=" + $("#categories").val() + "&limit=50&radius=2000"
 
     //add in code later: "&offset=" + totalresults - 50;""
     // var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + search + "&categories=" + dontGoWhere + "&limit=50&sort_by=rating&radius=2000&offset=" + totalresults - 50;
@@ -81,40 +83,86 @@ $("#enterButton").on("click", function () {
                             var city = item.location.city;
                             var state = item.location.state;
                             var zipcode = item.location.zip_code;
+
+                            var bizlatlong = [item.coordinates.latitude + "," + item.coordinates.longitude]
+
                             // Append our result into our page
+                            latlong.push(bizlatlong);
+
                             console.log(id)
+
                             badBizCount++;
-                            $('#yelpStuff').prepend('<div id="' + id + '" class="badBusinesses" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');//add "click here for reviews"
+                            $('#yelp').prepend('<div id="' + id + '" class="badBusinesses" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br><b>' + name + '</b><br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.<br><a class="yelpClick" yelp="' + id + '" href="javascript:void(0);">Click here for reviews</a></div>');
+
 
                         }
 
                     }
-                    console.log(badBizCount)
-                    if (badBizCount) {
 
+                    console.log(badBizCount)
+                    //why isn't this working?
+                    console.log(latlong);
+                    if (badBizCount > 0) {
+                        $("#yelp").prepend("<h3>" + ($("#categories").val()) + ":</h3>")
                     } else {
-                        $("#yelpResults").prepend("<h3>Hmmm....not that bad!</h3>")
+                        $("#yelp").prepend("<h3>" + ($("#categories").val()) + ":</h3>" + "<h5>Hmmm....not that bad!</h5>")
                     }
                     // each ID gets a click that has an onclick event that generates 3 reviews underneath. and that onclick event will have an ajax called based on the ID of that element
 
-                    // $.ajax({
-                    //     //get restaurant review search
-                    //     url: thirdURL,
-                    //     headers: {
-                    //         'Authorization': 'Bearer PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx',
-                    //     },
-                    //     method: 'GET',
-                    //     dataType: 'json',
-                    //     success: function (thirdData) {
-                    //         //get IDs from 
-                    //         var badbizID = $(".badBusinesses").attr("id")
 
-                    //     }
-                    // })
                 }
+
             })
         }
     })
 }
 
 )
+
+
+$(document).on("click", ".yelpClick", function () {
+    event.preventDefault()
+    var attrId = $(this).attr("yelp")
+    
+    var reviewURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/" + $(this).attr("yelp") + "/reviews"
+    $.ajax({
+        //get restaurant review search
+        url: reviewURL,
+        headers: {
+            'Authorization': 'Bearer PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx',
+        },
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            badRatingCount = 0
+            for (i = 0; i < data.reviews; i++) {
+                var item = reviews[i]
+                var id = item.id
+                var rating = item.rating
+                var text = item.text
+                console.log(item)
+                if (rating = 0) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_0.png">')
+                }
+                if (rating = 1) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_1.png">')
+                }
+                if (rating = 2) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_2.png">')
+                }
+                if (rating = 3) {
+                    $(this).append('<img src="images/yelp_stars/web_and_ios/small_3.png">')
+                }
+                if (rating <= 3) {
+                    badRatingCount++;
+                    $(this).append('<div id="' + id + '"><h6>Rating:' + rating + '</h6><p>' + text + "</p>")
+                }
+            }
+            if (badRatingCount = 0) {
+                $(this).append("<h6>Looks like yelp isn't giving us bad enough ratings....but trust us... this place is terrible!</h6>")
+            }
+
+        }
+    })
+})

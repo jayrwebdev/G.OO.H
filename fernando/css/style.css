@@ -35,15 +35,13 @@ body {
     margin-left: 10px ;
     background-color: black ;
     opacity: .5 ;
-    height: 600px ;
+    height: 600px;
     border-radius: 10px ;
-    font-size: 25px;
+    font-size: 17px;
     color: white;
-    padding-top: 200px;
-}
-.miamiButton{
-    margin-top: 20px;
-    width: 100%;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    overflow: auto;
 
 }
 
