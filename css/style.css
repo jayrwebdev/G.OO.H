@@ -2,7 +2,7 @@ body {
    background: url('../images/tomatobg.png');
    background-repeat: none ;
    background-size: cover;
-    background-attachment: fixed ; 
+   background-attachment: fixed ; 
    height: 100%;
    display: block;
    width: 100%
@@ -60,6 +60,7 @@ body {
     opacity: 1!important;
 }
 #map {
+    margin-top: 10px ;
     height: 600px;
     margin-bottom: 15px ;
     border-radius: 10px ;
