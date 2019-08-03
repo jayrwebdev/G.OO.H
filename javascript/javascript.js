@@ -2,8 +2,26 @@ var queryURL = "https://api.yelp.com/v3/businesses/search"
 
 var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx"
 
+//create variable based on the business.total number and then set the offset to start from there
+
+//steps - GET original header request via ajax; originally is: hotels, restaurants, active places, doctors, 
+
+//steps - get TOTAL from each request and sort by rating, then only show last 50
+
+// THEN print only 1 to 2 star rated businesses
+
+//  Then get business IDs from header request, get review pulls from that business ID
+
+// then print out to divs
+
 //creating variable based on the search bar input
 
+var search = $("#dragon").val()
+var latlong = [{}]
+var category = $("#categories").val()
+var badBizCount = 0
+//adding this later after editing the HTML to include categories: 
+//var dontGoWhere = $("#something").val()
 
 $("#enterButton").on("click", function () {
   //inputs search into new 
@@ -51,15 +69,9 @@ $("#enterButton").on("click", function () {
     }
   })
 })
-$("#enterButton").on("click", "value", function () {
-  
-  for (var i = 0; i < latlong.length ; i++) {
-    $('#latlng').value = latlong[i];
-  }
-  
-})
 
 function initMap() {
+  
   var map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 25.761681, lng: -80.191788 },
     zoom: 8
@@ -69,14 +81,15 @@ function initMap() {
   var geocoder = new google.maps.Geocoder;
   var infowindow = new google.maps.InfoWindow;
 
-  $('#submit').on('click', function () {
+  $('#enterButton').on('click', function () {
     geocodeLatLng(geocoder, map, infowindow);
   });
 }
 function geocodeLatLng(geocoder, map, infowindow) {
-  var input = $('#latlng').val()
-  var latlngStr = input.split(',', 2);
-  var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+  for ( var i = 0 ; i < latlong.length ; i++) {
+    var latlng = latlong[i] ;
+
+  }
   geocoder.geocode({ 'location': latlng }, function (results, status) {
     if (status === 'OK') {
       if (results[0]) {
