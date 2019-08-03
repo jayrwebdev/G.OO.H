@@ -50,8 +50,12 @@ $("#enterButton").on("click", function () {
     }
   })
 })
-$("").on("click", "value", function () {
-  $('#latlng')[0].value = 12312
+$("#enterButton").on("click", "value", function () {
+  
+  for (var i = 0; i < latlong.length ; i++) {
+    $('#latlng').value = latlong[i];
+  }
+  
 })
 
 function initMap() {
