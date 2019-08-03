@@ -1,6 +1,58 @@
+// API for Urban Dictionary...
+
+// variables required
+var city = "";
+
+// as soon as the page is loaded this code runs
+$(function(){
+
+  callDictionary();
+ 
+    function callDictionary(){
+      $("#enterButton").on("click", function(){
+        // empty div with class=time
+        $(".time").html("");
+        // capture the city user inputs
+        city = $("#dragon").val().trim();
+        
+        var queryURL = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' +
+        city + '';
+        // do Urban Dictionary api call
+            $.ajax({
+            url: queryURL,
+            method: "GET",
+            dataType: 'json',
+            headers: {"X-RapidAPI-Host": "mashape-community-urban-dictionary.p.rapidapi.com",
+            "X-RapidAPI-Key": "66d12ff58bmshb9ca2e2b0298cb9p1e723ejsn7c3dd0db9339"}
+        
+            }).then(function(response) {
+              // with api response loop through definitions and pick first 5
+                var results = response.list;
+                    console.log(results);
+                    // empty div with class=time
+                    $(".time").html("");
+                    // order results by number
+                    var pos=1;
+            
+                    
+
+                      for(var i = 1; i < 6; i++)
+                      {
+                        // append responses to div with class=time
+                       $(".time").append("<p>" + pos + ": " + results[i].definition.replace(/[\[\]‘]+/g, '') + "</p>");
+                       $(".time").scrollTop(400);
+                      pos++
+                      }
+                      $(".time").prepend("<h1>" + city.toLocaleUpperCase() + "</h1>")
+            });
+        });  
+  } 
+});
+
+//YELP API CODE
+
 var queryURL = "https://api.yelp.com/v3/businesses/search"
 
-var key = "PHz4spwIAbO8IBmiVxup8uUnT3sLEbhxuQ8omoc8YFuDqYIWo7MR19D2JRVNo_YRfSyJI6tkjaaqjOpMjTs9hcT_DgkWlW3lfDEiNzW6LNWRhgRLZSbRDNSpU2k8XXYx"
 
 //create variable based on the business.total number and then set the offset to start from there
 
