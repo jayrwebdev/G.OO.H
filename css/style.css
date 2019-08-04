@@ -25,12 +25,12 @@ body {
 #dragon {
     padding-left: 30px ;
 }
-#dragon, #enterButton {
+#dragon, #categories, #enterButton {
     float: right ;
     margin-top: 10px ;
     margin-bottom: 10px ;
     margin-right: 10px ;
-}
+}   
 #cannon {
     margin-top: 30px ;
 }
@@ -68,3 +68,11 @@ body {
 #picture {
     margin-left: 10px ;
 }
+.importedImg{
+    width: 200px;
+    height: 100px;
+}
+.zoomedImg{
+   width: 400px;
+   height: 400px;
+} 

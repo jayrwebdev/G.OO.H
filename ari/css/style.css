@@ -47,8 +47,6 @@ body {
 .col-lg-4, .col-lg-7{
     width: 29,16667%!important;
 }
-
-
 .novachrono {
     margin-left: 500px;
     
@@ -57,3 +55,11 @@ body {
     color: black;
     opacity: 1!important;
 }
+.importedImg{
+    width: 200px;
+    height: 100px;
+}
+.zoomedImg{
+   width: 400px;
+   height: 400px;
+} 
