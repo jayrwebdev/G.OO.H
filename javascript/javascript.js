@@ -113,7 +113,7 @@ $(function () {
           $(".time").scrollTop(400);
           pos++
         }
-        $(".time").prepend('<h1 style="text-align:center;">' + city.toLocaleUpperCase() + "</h1>")
+        $(".time").prepend('<h1 class="cityText" style="text-align:center;">' + city.toLocaleUpperCase() + "</h1>")
       });
     });
   }
@@ -133,6 +133,8 @@ var badRatingCount = 0
 $("#enterButton").on("click", function () {
   event.preventDefault();
   $(".introText").hide()
+  // var time=$('<div class="container"><div class="row"><div id="cannon" class="col-lg-11 offset-lg-1 time"></div></div>')
+     $("#cannon").addClass("time")
   //creates variable for loading image
   var loader = $("#yelp").prepend('<img id="loader" src="images/loader.gif">')
   //creates variable for searchbar
