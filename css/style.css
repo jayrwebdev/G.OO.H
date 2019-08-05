@@ -13,7 +13,7 @@ body {
     background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
-#dragon {
+#dragon, #categories {
     width: 20% ;
     height: 37px ;
     border-color: black ;
@@ -27,8 +27,9 @@ body {
 }
 #dragon, #categories, #enterButton {
     float: right ;
-    margin-top: 10px ;
-    margin-bottom: 10px ;
+    margin: auto; 
+    margin-top: 1rem;
+    margin-bottom:1rem;
     margin-right: 10px ;
 }   
 #cannon {
@@ -59,14 +60,12 @@ body {
     color: black;
     opacity: 1!important;
 }
-#map {
-    margin-top: 10px ;
-    height: 600px;
-    margin-bottom: 15px ;
-    border-radius: 10px ;
-}
+
 #picture {
+    margin-top: 4px ;
     margin-left: 10px ;
+    width:8rem;
+    height:auto;
 }
 .importedImg{
     width: 200px;
@@ -76,3 +75,101 @@ body {
    width: 400px;
    height: 400px;
 } 
+#map_wrapper {
+    height: 400px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+#cannon {
+    height:auto ;
+}
+.bizCount {
+    border-top: 3px solid grey ;
+    font-size: 1.5rem ;
+}
+.headerText {
+    border-bottom: 5px solid black;
+    padding-top: 5px ;
+    text-align:center;
+    padding-bottom: .5rem;
+}
+#yelp {
+margin-left:10px;
+    text-align: left ;
+    background-color: white ;
+    margin-bottom: 2rem;
+    margin-top:2rem;
+    border-radius: 10px ;
+    opacity: .85 ;
+}
+.badBusinesses {
+    margin-left: 5% ;
+}
+.importedImg{
+    width: 20%;
+    height: 15%;
+}
+.zoomedImg{
+   width: 40%;
+   height: 40%;
+} 
+#mobileText{
+    font-size:.5rem;
+    color:grey;
+    padding-left:.25rem;
+}
+.introText{
+    background-color: orange;
+    opacity:.85;
+}
+.grossIntro{
+    font-size:8rem;
+    font-family: 'Creepster', cursive;
+    text-align:center;
+}
+.introParagraph{
+    font-family: 'IM Fell DW Pica SC', serif;
+    text-align:center;
+    font-size:3rem;
+}
+
+
+/*font-family: 'IM Fell DW Pica SC', serif;
+font-family: 'Eater', cursive;*/
+@media only screen and (max-width: 600px) {
+    .importedImg{
+        width: 50%;
+        height: 40%;
+    }
+    .zoomedImg{
+       width: 75%;
+       height: 75%;
+    } 
+    #picture {
+      
+        width:6.5rem;
+        height:auto;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    .importedImg{
+        width: 50%;
+        height: 40%;
+    }
+    .zoomedImg{
+       width: 75%;
+       height: 75%;
+    } 
+    #picture {
+      margin-top:1rem;
+        width:4rem;
+        height:auto;
+    }
+  }
+
+
+
