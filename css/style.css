@@ -136,6 +136,11 @@ margin-left:10px;
     font-size:3rem;
 }
 
+.cityText{
+    font-size:4rem;
+    text-decoration:underline;
+}
+
 
 /*font-family: 'IM Fell DW Pica SC', serif;
 font-family: 'Eater', cursive;*/
