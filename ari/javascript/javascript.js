@@ -36,9 +36,7 @@ $("#enterButton").on("click", function () {
             loader
         },
         //when ajax call is finished running, loader will disappear
-        complete: function () {
-            $('#loader').hide();
-        },
+
         //if ajax call succeeds do the following:
         success: function (data) {
             //reset badBizCount to 0
@@ -72,11 +70,10 @@ $("#enterButton").on("click", function () {
                     loader
                 },
                 //loader hide
-                complete: function () {
-                    $('#loader').hide();
-                },
+
                 //on success:
                 success: function (secondData) {
+                    $('#loader').hide();
                     //businesses to run for loop on:
                     var business = secondData.businesses
 
@@ -200,7 +197,7 @@ $(document).on("click", ".yelpClick", function (event) {
                     //add to badRatingCount
                     badRatingCount++;
                     //append the following text to the review
-                    $("#" + attrId).append('<div class="reviewClass' + attrId + '" id="' + id + '"><h6>Rating:' + rating + '</h6><p>' + text + '</p> <span><a class="removeLinks' + attrId + '" href="' + reviewLinks + '" target="_blank">click here for full review</a> </span>')
+                    $("#" + attrId).append('<div class="overflow reviewClass' + attrId + '" id="' + id + '"><h6>Rating:' + rating + '</h6><p>' + text + '</p> <span><a class="removeLinks' + attrId + '" href="' + reviewLinks + '" target="_blank">click here for full review</a> </span>')
                 }
 
             }
